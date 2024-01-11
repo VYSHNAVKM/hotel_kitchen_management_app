@@ -2,18 +2,17 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hotel_kitchen_management_app/utils/color_constant.dart';
 import 'package:hotel_kitchen_management_app/utils/textstyle_constant.dart';
-import 'package:hotel_kitchen_management_app/view/chef_view/chef_interface/chef_interface.dart';
-import 'package:hotel_kitchen_management_app/view/login_screen/chef_login_screen/chef_signup_screen.dart';
 
-class ChefLoginScreen extends StatefulWidget {
-  const ChefLoginScreen({super.key});
+class AdminSignUpScreen extends StatefulWidget {
+  const AdminSignUpScreen({super.key});
 
   @override
-  State<ChefLoginScreen> createState() => _ChefLoginScreenState();
+  State<AdminSignUpScreen> createState() => _AdminSignUpScreenState();
 }
 
-class _ChefLoginScreenState extends State<ChefLoginScreen> {
+class _AdminSignUpScreenState extends State<AdminSignUpScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
@@ -21,18 +20,13 @@ class _ChefLoginScreenState extends State<ChefLoginScreen> {
 
   String _email = "";
   String _password = "";
-  void _handleLogin() async {
+  void _handleSignUp() async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: _email, password: _password);
-      print("User Logged In : ${userCredential.user!.email}");
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChefInterface(),
-          ));
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: _email, password: _password);
+      print("User Registered : ${userCredential.user!.email}");
     } catch (e) {}
-    print("Error During Logged In : $e");
+    print("Error During Registration : $e");
   }
 
   @override
@@ -46,10 +40,13 @@ class _ChefLoginScreenState extends State<ChefLoginScreen> {
             key: _formkey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'CHEF LOGIN',
-                  style: maintextdark,
+                Center(
+                  child: Text(
+                    'ADMIN SIGN UP',
+                    style: maintextdark,
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -102,34 +99,31 @@ class _ChefLoginScreenState extends State<ChefLoginScreen> {
                   },
                 ),
                 SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Password should be at least 6 characters',
+                  style: GoogleFonts.poppins(fontSize: 15, color: dark),
+                ),
+                SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue.shade900)),
-                    onPressed: () {
-                      if (_formkey.currentState!.validate()) {
-                        _handleLogin();
-                      }
-                    },
-                    child: Text(
-                      'Login',
-                      style: subtextlight,
-                    )),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChefSignUpScreen(),
-                          ));
-                    },
-                    child: Text(
-                      'Sign Up',
-                      style: GoogleFonts.poppins(
-                          fontSize: 17, color: Colors.blue.shade900),
-                    ))
+                Center(
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue.shade900)),
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          _handleSignUp();
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: subtextlight,
+                      )),
+                )
               ],
             ),
           ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hotel_kitchen_management_app/utils/color_constant.dart';
 import 'package:hotel_kitchen_management_app/utils/textstyle_constant.dart';
 import 'package:hotel_kitchen_management_app/view/chef_view/orders.dart/orders.dart';
 import 'package:hotel_kitchen_management_app/view/chef_view/update_status/update_status.dart';
+import 'package:hotel_kitchen_management_app/view/login_screen/chef_login_screen/chef_login_screen.dart';
 
 class ChefInterface extends StatefulWidget {
   const ChefInterface({super.key});
@@ -18,6 +20,24 @@ class _ChefInterfaceState extends State<ChefInterface> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          leading: Icon(
+            Icons.menu,
+            color: dark,
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChefLoginScreen(),
+                      ));
+                },
+                icon: Icon(
+                  Icons.logout_rounded,
+                  color: dark,
+                ))
+          ],
           centerTitle: true,
           title: Text('Chef Interface', style: maintextdark),
           bottom: TabBar(

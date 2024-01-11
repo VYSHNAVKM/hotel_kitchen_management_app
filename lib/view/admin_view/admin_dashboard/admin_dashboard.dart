@@ -6,16 +6,35 @@ import 'package:hotel_kitchen_management_app/utils/textstyle_constant.dart';
 import 'package:hotel_kitchen_management_app/view/admin_view/admin_dashboard/widgets/incoming_orders.dart';
 import 'package:hotel_kitchen_management_app/view/admin_view/inventory_management/inventory_management.dart';
 import 'package:hotel_kitchen_management_app/view/admin_view/menu_management/menu_management.dart';
+import 'package:hotel_kitchen_management_app/view/login_screen/admin_login_screen/admin_login_screen.dart';
 
 class AdminDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(
+          Icons.menu,
+          color: dark,
+        ),
         title: Text(
           'ADMIN DASHBOARD',
           style: maintextdark,
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdminLoginScreen(),
+                    ));
+              },
+              icon: Icon(
+                Icons.logout_rounded,
+                color: dark,
+              ))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

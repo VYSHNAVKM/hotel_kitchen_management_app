@@ -221,7 +221,7 @@ class _MenuManagementState extends State<MenuManagement> {
             );
           }
           return Center(
-            child: Text('No data found'),
+            child: CircularProgressIndicator(),
           );
         },
       ),

@@ -265,7 +265,7 @@ class _InventoryManagementState extends State<InventoryManagement> {
             );
           }
           return Center(
-            child: Text('No data found'),
+            child: CircularProgressIndicator(),
           );
         },
       ),
