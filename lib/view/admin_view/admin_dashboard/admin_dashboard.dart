@@ -1,4 +1,3 @@
-// Example of a simple admin dashboard
 import 'package:flutter/material.dart';
 import 'package:hotel_kitchen_management_app/globel_widgets/incoming_orders_list.dart';
 import 'package:hotel_kitchen_management_app/utils/color_constant.dart';
@@ -6,7 +5,7 @@ import 'package:hotel_kitchen_management_app/utils/textstyle_constant.dart';
 import 'package:hotel_kitchen_management_app/view/admin_view/admin_dashboard/widgets/incoming_orders.dart';
 import 'package:hotel_kitchen_management_app/view/admin_view/inventory_management/inventory_management.dart';
 import 'package:hotel_kitchen_management_app/view/admin_view/menu_management/menu_management.dart';
-import 'package:hotel_kitchen_management_app/view/login_screen/admin_login_screen/admin_login_screen.dart';
+import 'package:hotel_kitchen_management_app/view/login_screen/userinterface_screen.dart';
 
 class AdminDashboard extends StatelessWidget {
   @override
@@ -27,7 +26,7 @@ class AdminDashboard extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AdminLoginScreen(),
+                      builder: (context) => UserinterfaceScreen(),
                     ));
               },
               icon: Icon(

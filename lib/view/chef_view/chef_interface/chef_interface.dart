@@ -4,7 +4,7 @@ import 'package:hotel_kitchen_management_app/utils/color_constant.dart';
 import 'package:hotel_kitchen_management_app/utils/textstyle_constant.dart';
 import 'package:hotel_kitchen_management_app/view/chef_view/orders.dart/orders.dart';
 import 'package:hotel_kitchen_management_app/view/chef_view/update_status/update_status.dart';
-import 'package:hotel_kitchen_management_app/view/login_screen/chef_login_screen/chef_login_screen.dart';
+import 'package:hotel_kitchen_management_app/view/login_screen/userinterface_screen.dart';
 
 class ChefInterface extends StatefulWidget {
   const ChefInterface({super.key});
@@ -30,7 +30,7 @@ class _ChefInterfaceState extends State<ChefInterface> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ChefLoginScreen(),
+                        builder: (context) => UserinterfaceScreen(),
                       ));
                 },
                 icon: Icon(
